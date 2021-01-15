@@ -59,7 +59,7 @@ struct fruitInfo: View {
                 envv.item.NameF = nil
                 envv.item.PriceF = nil
                
-                // reset item . shoud not reset itemNumber
+           
                 print("testing here")
                 print(envv.items[envv.item.itemNumber!].NameF ?? "Not inserted")
                 //envv.item.itemNumber! += 1
