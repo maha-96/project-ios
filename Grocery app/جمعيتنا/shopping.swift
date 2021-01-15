@@ -13,23 +13,20 @@ struct shopping: View {
         GridItem(.flexible())
     ]
     var body: some View {
-//        ZStack{
-//           Color("Color4")
-//           .opacity(0.1)
-//            .ignoresSafeArea()
+        
+        ZStack{
+       Image("BG2")
+        .resizable()
+        .ignoresSafeArea()
             
         VStack(){
-                
-                Image("fh4")
-                    .resizable()
-                .frame(width: 400, height: 150, alignment: .center)
-                .ignoresSafeArea()
+    
             
             Spacer()
+            Spacer()
+            ScrollView{
                 
-                
-                ScrollView{
-                    LazyVGrid(columns: layout, spacing: 30){
+                    LazyVGrid(columns: layout , spacing: 30){
                         
                         ForEach (FD){ fruitsDetails in
                             NavigationLink(
@@ -40,44 +37,15 @@ struct shopping: View {
                             
                         }
                     }
-                }
-                .padding()
-                .background(Color.white)
-                .cornerRadius(30)
-                .ignoresSafeArea()
-                
-                .padding()
-                .background(Color("Color1").opacity(0.1))
-               // .cornerRadius(45)
-                .ignoresSafeArea()
+               }
+            Spacer()
             
-                 padding()
-              NavigationLink(
-                 destination: Cart(),
-                 label: {
-                     HStack(){
-                     Text("عربة التسوق")
-                     Image(systemName: "cart")
-                      .resizable()
-                      .frame(width: 20, height: 20)
-                 }
-                         .padding()
-                         .foregroundColor(.black)
-                         .opacity(0.8)
-                         .frame(width: 200, height: 40, alignment: .center)
-                         .background(Color("Color1").opacity(0.2))
-                         .cornerRadius(18)
-                         .shadow(radius: 20)
-                    
-                    Spacer()
-                 })
-                
             }
-            
+           
             
         }
     }
-
+}
 
 //struct shopping_Previews: PreviewProvider {
 //    static var previews: some View {
@@ -96,8 +64,8 @@ struct shoppingGrid: View {
             Image(Fruits.fruitImage)
                 .resizable()
                 .frame(width: 100, height: 100, alignment: .center)
-                .padding(.vertical, 20)
-                .padding(.horizontal, 20)
+                .padding(.vertical, 16)
+                .padding(.horizontal, 16)
                 .background(Color("Color1").opacity(0.1))
                 .cornerRadius(18)
             
@@ -108,7 +76,9 @@ struct shoppingGrid: View {
           
                 Text("KWD / 1kilo")
                     .font(.custom("Adequate-ExtraLight", size: 11))
-            Text("\(Fruits.fruitPrice )")
+            
+        let FF = String(format: " %.3f" , Fruits.fruitPrice )
+            Text(FF)
             .font(.custom("Adequate-ExtraLight", size: 15))
         }
         

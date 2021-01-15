@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct Cart: View {
+    @EnvironmentObject var envv : Inv
     var body: some View {
         
         VStack{
@@ -26,7 +27,7 @@ struct Cart: View {
             .background(Color("Color1").opacity(0.1))
             .padding(.vertical)
             
-            //var totalPrice = ""
+            
             
             List{
                 
@@ -47,27 +48,39 @@ struct Cart: View {
                                     Text(item.NameF ?? "No item")
                                     
                                     HStack(spacing: 0){
-                                        Text("\(item.PriceF ?? "0")")
+                                   // let digitpricef = String(format: " %.3f" , item.PriceF )
+                                        Text(priceDigit(item : item))
+                                            
                                             .font(.title3)
                                         Text("KWD")
                                     }
-//                                    .onAppear(perform: {
-//                                        totalPrice = item.priceF + totalPrice
-//                                    })
+
                                 }
                                 
                             }
                             
+                            .onAppear{
+                              
+                                envv.totalPrice = envv.totalPrice + (item.PriceF ?? 0.0)
                             
+                                print(envv.totalPrice)
+                              
+                            }
                             
                         }
                     }
                     
                 }
+              
             }
             
             
-            
+        HStack{
+         Text("KWD")
+            let finalPrice = String(format: "%.3f", envv.totalPrice)
+            //Text("\(envv.totalPrice)")
+            Text(finalPrice)
+        }
             
             Button(action:  {
                 
@@ -80,23 +93,18 @@ struct Cart: View {
                     .background(Color("Color1").opacity(0.3))
                     .cornerRadius(18)
                     .shadow(radius: 20)
-                    .padding(.vertical, 35)
             })
+            .padding()
             
             
         }
         
         
-        //        VStack{
-        //            if envv.item.itemNumber != nil{
-        //                ForEach(envv.items, id: \.self){ item in
-        //                    if item.NameF != nil{
-        //                Text(item.NameF!)
-        //                    }
-        //                }
-        //            }
-        //
-        //        }
+    }
+    
+    
+    func priceDigit (item: cartdetails) -> String {
+        String(format: " %.3f" , item.PriceF ?? 0.0 )
     }
 }
 
@@ -105,4 +113,10 @@ struct Cart: View {
 //        Cart()
 //    }
 //}
+
+
+
+
+
+
 

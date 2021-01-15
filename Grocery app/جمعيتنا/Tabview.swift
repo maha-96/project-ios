@@ -8,26 +8,27 @@
 import SwiftUI
 
 struct Tabview: View {
+    @EnvironmentObject var envv : Inv
     var body: some View {
         TabView{
-         
-           // home(inv: inv)
-            home().environmentObject(envv)
-            //Text("Home")
+
+           
+            home()
+           
                 .tabItem {
                     Image(systemName: "house")
                     Text("Home")
                 }
-            //Cart(inv: inv)
-                Cart().environmentObject(envv)
-            //Text("cart")
+           
+            Cart()
+            
                 .tabItem {
                     Image(systemName: "cart")
                     Text("cart")
                 }
-        
-        
-        
+
+
+
         }
 
     }
@@ -35,6 +36,7 @@ struct Tabview: View {
 
 struct Tabview_Previews: PreviewProvider {
     static var previews: some View {
-        Tabview().environmentObject(envv)
+        Tabview().environmentObject(Inv())
+
     }
 }

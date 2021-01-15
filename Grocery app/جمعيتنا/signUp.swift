@@ -29,8 +29,9 @@ struct signUp: View {
             Spacer()
             
             TextField("الاسم الثلاثي", text: $name)
+                .disableAutocorrection(true)
                 .overlay(Rectangle().stroke(Color("Color2"),lineWidth: 1.5))
-            // .cornerRadius(10)
+           
             
             
             TextField("رقم الهاتف", text: $phoneNum)
@@ -105,6 +106,6 @@ struct signUp: View {
 }
 struct signUp_Previews: PreviewProvider {
     static var previews: some View {
-        signUp()
+        signUp().environmentObject(Inv())
     }
 }

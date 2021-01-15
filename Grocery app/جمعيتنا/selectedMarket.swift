@@ -13,6 +13,7 @@ struct selectedMarket: View {
         GridItem(.flexible())
         ]
     var body: some View {
+        ZStack{
         VStack{
            
             ScrollView{
@@ -71,7 +72,7 @@ struct selectedMarket: View {
                 }
            
             }
-            padding()
+            .padding()
             NavigationLink(
                 destination: Cart(),
                 label: {
@@ -92,7 +93,7 @@ struct selectedMarket: View {
         }
     }
 }
-
+}
 //struct selectedMarket_Previews: PreviewProvider {
 //    static var previews: some View {
 //        selectedMarket()

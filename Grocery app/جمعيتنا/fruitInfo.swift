@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct fruitInfo: View {
+    @EnvironmentObject var envv : Inv
     let Fruits : fruitsDetails
     @State var q = 0.0
-   
+    @State var totalPrice = 0.0
     var body: some View {
        
         VStack(alignment: .trailing, spacing: 40)
@@ -28,11 +29,12 @@ struct fruitInfo: View {
                 .padding()
                 .font(.largeTitle)
            
-            Stepper("\(q)", value: $q , in:0...20)
+            let Q = String(format: " %.0f" , q )
+            Stepper("kilo:\(Q)", value: $q , in:0...20)
                 .frame(width: 150, height: 20, alignment: .center)
             
-            //let total = String( q * Fruits.fruitPrice )
-                
+           
+            let total1 = q * Fruits.fruitPrice
             let total = String(format: " %.3f" , q * Fruits.fruitPrice )
           
             HStack{
@@ -42,9 +44,10 @@ struct fruitInfo: View {
             }
             
             Button( action: {
+                totalPrice = total1
                 envv.item.ImageF = Fruits.fruitImage
                 envv.item.NameF = Fruits.fruitName
-                envv.item.PriceF = total
+                envv.item.PriceF = total1
                 if envv.item.itemNumber == nil{
                     envv.item.itemNumber = 0
                 }
@@ -113,8 +116,3 @@ struct fruitInfo: View {
     }
 }
 
-//struct fruitInfo_Previews: PreviewProvider {
-//    static var previews: some View {
-//        fruitInfo(Fruits: fruitsDetails(fruitImage: "orange", fruitName: "برتقال", fruitPrice: 0.6))
-//    }
-//}

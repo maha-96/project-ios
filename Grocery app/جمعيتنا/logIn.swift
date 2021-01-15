@@ -32,14 +32,21 @@ struct logIn: View {
             
                 .padding()
             
+            VStack(alignment: .leading){
+                
+                HStack{
+            
             TextField("البريد الالكتروني", text: $email)
                 
                 .disableAutocorrection(true)
                 .overlay(Rectangle().stroke(Color("Color2"),lineWidth: 1.5))
-            
+            Image(systemName : "person.fill")
+            .foregroundColor(Color("Color2"))
+                   
+                }
                 .padding()
             
-            HStack(){
+            HStack(spacing: 0){
                                          
                 if visible  {
                     
@@ -54,6 +61,7 @@ struct logIn: View {
                     TextField("الرقم السري" , text: $password)
                         .disableAutocorrection(true)
                     .overlay(Rectangle().stroke(Color("Color2"),lineWidth: 1.5))
+                  
                             }
                 
               
@@ -68,17 +76,18 @@ struct logIn: View {
         Image(systemName:visible ? "eye.slash.fill" : "eye.fill")
             .foregroundColor(Color("Color2"))
                         }
-                                         
+        
                     }
+
             
-            
+            }
                    Spacer()
             
             
            if email != ""  && password != "" {
             
             NavigationLink(
-                destination:  Tabview(),
+                destination: Tabview(),
                 label: {
                     Text("الدخول")
                         .padding()
@@ -103,7 +112,7 @@ struct logIn: View {
 
 struct logIn_Previews: PreviewProvider {
     static var previews: some View {
-        logIn()
+        logIn().environmentObject(Inv())
     }
 }
 
